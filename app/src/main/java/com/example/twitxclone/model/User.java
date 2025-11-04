@@ -2,17 +2,17 @@ package com.example.twitxclone.model;
 
 public class User {
 
-    private String username;
+    private String email;
     private String dob;
-    public static final String U_KEY = "user";
-    public static final String D_KEY = "birth";
+    public static final String U_KEY = "EMAIL";
+    public static final String D_KEY = "BIRTH";
 
-    public String getUsername(){
-       return username;
+    public String getEmail(){
+       return email;
     }
 
-    public void setUsername (String username){
-        this.username = username;
+    public void setEmail (String email){
+        this.email = email;
     }
 
     public String getDob(){
