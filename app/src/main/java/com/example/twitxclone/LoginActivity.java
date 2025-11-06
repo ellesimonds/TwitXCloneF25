@@ -21,8 +21,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.*;
 
@@ -55,18 +57,20 @@ public class LoginActivity extends AppCompatActivity {
 
                     //Read User info form database to retrieve dob
                     DatabaseReference uRef = database.getReference("users");
-//                  uRef.orderByChild("email").equalTo(user.getEmail()).limitToLast(1).addListenerForSingleValueEvent(new
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot){
-//                            User u = snapshot.getChildren().iterator().next().getValue(User.class);
-//                            String dob = u.getDob();
-//                            intent.putExtra(User.D_KEY, dob);
-//                    }
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error){
-//
-//                    }
-                    ;
+                  uRef.orderByChild("email").equalTo(user.getEmail()).limitToLast(1)
+                          .addListenerForSingleValueEvent(new ValueEventListener() {
+                              @Override
+                              public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                  User u = snapshot.getChildren().iterator().next().getValue(User.class);
+                                  String dob = u.getDob();
+                                  intent.putExtra(User.D_KEY, dob);
+                              }
+
+                              @Override
+                              public void onCancelled(@NonNull DatabaseError error) {
+
+                              }
+                          });
 
                     startActivity(intent);
 

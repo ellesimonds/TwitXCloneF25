@@ -60,7 +60,7 @@ public class MessagesActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         DatabaseReference mRef = database.getReference("messages");
-        //Read messades from database
+        //Read messages from database
         mRef.orderByChild("publishedAt").limitToLast(100).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
