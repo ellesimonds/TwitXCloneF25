@@ -68,7 +68,7 @@ public class MessagesActivity extends AppCompatActivity {
                     Message m = message.getValue(Message.class);
                     messageList.add(m);
                 }
-
+                listView.invalidateViews();
             }
 
             @Override
